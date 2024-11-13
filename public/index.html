@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+<table id="userTable">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>USD</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        <!-- Rows will be added here -->
+    </tbody>
+</table>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        
+        socket.on("getAccount",function(msg){
+            console.log(msg)
+            const tableBody = document.getElementById('tableBody');
+    
+    msg.forEach(item => {
+        row
+        
+        const row = document.createElement('tr');
+        
+        // Create and append cells
+        const Symbol = document.createElement('td');
+        Symbol.textContent = item.asset;
+        row.appendChild(Symbol);
+        
+        const Price = document.createElement('td');
+        Price.textContent = item.free;
+        row.appendChild(Price);
+        
+        const USD = document.createElement('td');
+        USD.textContent = item.usd;
+        row.appendChild(USD);
+        
+        // Append the row to the table body
+        tableBody.appendChild(row);
+    });
+        })
+        function sendMessage() {
+           socket.emit("getAccount");
+        }
+sendMessage()
+        socket.on('message', function(msg) {
+            const item = document.createElement('li');
+            item.textContent = msg;
+            document.getElementById('messages').appendChild(item);
+        });
+    </script>
+</body>
+</html>
