@@ -42,7 +42,7 @@ class _BalanceState extends State<Balance> {
           color: Colors.purple,
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   balanceData[index]["asset"],

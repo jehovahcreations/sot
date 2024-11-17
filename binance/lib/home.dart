@@ -1,4 +1,5 @@
 import 'package:binance/balance.dart';
+import 'package:binance/bnbPair.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -11,12 +12,28 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(children: [
-        Expanded(
-          child: SizedBox(height: 10, child: Balance()),
-        )
-      ]),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.05,
+            width: MediaQuery.of(context).size.width,
+            child: const Balance(),
+          ),
+          Row(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.8,
+                width: MediaQuery.of(context).size.width*0.3,
+                child: const BnbPair(),
+              ),
+            ],
+          ),
+          // Expanded(child: Balance()),
+        
+          // const Row(children: [Expanded(child: BnbPair(),),],),
+        ]),
+      ),
     );
   }
 }
